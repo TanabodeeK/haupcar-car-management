@@ -37,7 +37,7 @@ function CarTable({ cars, onEdit, onDelete }) {
                     <td>{car.year}</td>
                     <td>{car.note}</td>
                     <td>
-                      <div className="action-buttons">
+                      <div className="d-flex gap-2">
                         <button
                           className="btn btn-sm btn-warning"
                           onClick={() => onEdit(car)}

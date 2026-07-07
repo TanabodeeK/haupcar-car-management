@@ -1,16 +1,39 @@
 function CarForm({
   formData,
+  formErrors,
   isEditing,
   onChange,
   onSubmit,
   onCancelEdit,
 }) {
   return (
-    <div className="card shadow-sm mb-4">
+    <div
+      className={`card shadow-sm mb-4 ${
+        isEditing ? "border border-warning" : ""
+      }`}
+    >
       <div className="card-body">
-        <h5 className="card-title mb-3">
-          {isEditing ? "Edit Car Information" : "Add New Car"}
-        </h5>
+        <div className="d-flex justify-content-between align-items-start mb-3">
+          <div>
+            <h5 className="card-title mb-1">
+              {isEditing ? "Edit Car Information" : "Add New Car"}
+            </h5>
+
+            <p className="text-muted mb-0">
+              {isEditing
+                ? "Update the selected car information below."
+                : "Fill in the car information to add it to the system."}
+            </p>
+          </div>
+
+          <span
+            className={`badge ${
+              isEditing ? "bg-warning text-dark" : "bg-primary"
+            }`}
+          >
+            {isEditing ? "Editing Mode" : "Create Mode"}
+          </span>
+        </div>
 
         <form onSubmit={onSubmit}>
           <div className="row g-3">
@@ -19,12 +42,19 @@ function CarForm({
               <input
                 type="text"
                 name="licensePlate"
-                className="form-control"
+                className={`form-control ${
+                  formErrors.licensePlate ? "is-invalid" : ""
+                }`}
                 value={formData.licensePlate}
                 onChange={onChange}
-                placeholder="กข-1234"
-                required
+                placeholder="Enter car registration number"
               />
+
+              {formErrors.licensePlate && (
+                <div className="invalid-feedback">
+                  {formErrors.licensePlate}
+                </div>
+              )}
             </div>
 
             <div className="col-md-4">
@@ -32,12 +62,17 @@ function CarForm({
               <input
                 type="text"
                 name="brand"
-                className="form-control"
+                className={`form-control ${
+                  formErrors.brand ? "is-invalid" : ""
+                }`}
                 value={formData.brand}
                 onChange={onChange}
-                placeholder="Toyota"
-                required
+                placeholder="Enter car brand"
               />
+
+              {formErrors.brand && (
+                <div className="invalid-feedback">{formErrors.brand}</div>
+              )}
             </div>
 
             <div className="col-md-4">
@@ -45,12 +80,17 @@ function CarForm({
               <input
                 type="text"
                 name="model"
-                className="form-control"
+                className={`form-control ${
+                  formErrors.model ? "is-invalid" : ""
+                }`}
                 value={formData.model}
                 onChange={onChange}
-                placeholder="Yaris"
-                required
+                placeholder="Enter car model"
               />
+
+              {formErrors.model && (
+                <div className="invalid-feedback">{formErrors.model}</div>
+              )}
             </div>
 
             <div className="col-md-4">
@@ -61,7 +101,7 @@ function CarForm({
                 className="form-control"
                 value={formData.color}
                 onChange={onChange}
-                placeholder="White"
+                placeholder="Enter car color"
               />
             </div>
 
@@ -70,11 +110,17 @@ function CarForm({
               <input
                 type="number"
                 name="year"
-                className="form-control"
+                className={`form-control ${
+                  formErrors.year ? "is-invalid" : ""
+                }`}
                 value={formData.year}
                 onChange={onChange}
-                placeholder="2022"
+                placeholder="Enter manufacture year"
               />
+
+              {formErrors.year && (
+                <div className="invalid-feedback">{formErrors.year}</div>
+              )}
             </div>
 
             <div className="col-md-4">
@@ -85,13 +131,16 @@ function CarForm({
                 className="form-control"
                 value={formData.note}
                 onChange={onChange}
-                placeholder="Company car"
+                placeholder="Enter additional note"
               />
             </div>
           </div>
 
           <div className="mt-4 d-flex gap-2">
-            <button type="submit" className="btn btn-primary">
+            <button
+              type="submit"
+              className={`btn ${isEditing ? "btn-warning" : "btn-primary"}`}
+            >
               {isEditing ? "Update Car" : "Add Car"}
             </button>
 
