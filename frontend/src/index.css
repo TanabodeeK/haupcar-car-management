@@ -1,0 +1,25 @@
+body {
+  background-color: #f5f7fb;
+}
+
+.app-container {
+  min-height: 100vh;
+}
+
+.page-title {
+  font-weight: 700;
+}
+
+.card {
+  border: none;
+  border-radius: 16px;
+}
+
+.table th {
+  white-space: nowrap;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
