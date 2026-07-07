@@ -1,16 +1,12 @@
 import express from "express";
 import cors from "cors";
+import carRouter from "./routes/car.route.js";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({
-    success: true,
-    message: "Car Management API is running",
-  });
-});
+app.use("/api/cars",carRouter)
 
 export default app;
